@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= locals.pageTitle ? pageTitle + ' · ' : '' %><%= locals.siteName || 'Eventos' %></title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/"><%= locals.siteName || 'falta siteName (parte 4: res.locals)' %></a>
+    <nav>
+      <a href="/" class="<%= locals.currentPath === '/' ? 'active' : '' %>">Eventos</a>
+    </nav>
+  </header>
+  <main>

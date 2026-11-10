@@ -1,0 +1,56 @@
+<%- include('partials/head', { pageTitle: event.title }) %>
+
+<p class="back"><a href="/events">← Todos los eventos</a></p>
+
+<span class="tag"><%= event.category %></span>
+<h1><%= event.title %></h1>
+<p><%= fmtDate(event.date) %> · <%= event.location %></p>
+<p class="description"><%= event.description %></p>
+
+<% if (registered) { %>
+  <p class="alert ok">Te has inscrito correctamente. ¡Hasta pronto!</p>
+<% } %>
+
+<div class="cols">
+  <section class="panel">
+    <h2>Inscribirse</h2>
+
+    <%# TODO 3.2, paso 3. Muestra errors.general aquí, aunque se oculte el formulario. %>
+
+    <% if (free > 0) { %>
+      <form method="post" action="/events/<%= event._id %>/registrations" novalidate>
+        <label for="name">Nombre y apellidos</label>
+        <input id="name" name="name"
+               value="<%= old.name || '' %>"
+               class="<%= errors.name ? 'invalid' : '' %>">
+        <% if (errors.name) { %>
+          <p class="field-error"><%= errors.name %></p>
+        <% } %>
+
+        <label for="email">Email</label>
+        <%# TODO 3.2, paso 1. Sigue el ejemplo del nombre con old.email y errors.email. %>
+        <input id="email" name="email" type="email">
+
+        <button type="submit">Inscribirse</button>
+        <p class="hint"><%= free %> <%= free === 1 ? 'plaza libre' : 'plazas libres' %></p>
+      </form>
+    <% } else { %>
+      <p class="alert">El evento está completo.</p>
+    <% } %>
+  </section>
+
+  <section class="panel">
+    <h2>Inscritos (<%= registrations.length %>/<%= event.capacity %>)</h2>
+
+    <% if (registrations.length === 0) { %>
+      <p>Todavía no se ha inscrito nadie.</p>
+    <% } else { %>
+      <ol class="people">
+        <%# TODO 2.2. Recorre registrations y añade un <li> por inscripción.
+            Muestra solo el nombre de la persona inscrita. %>
+      </ol>
+    <% } %>
+  </section>
+</div>
+
+<%- include('partials/foot') %>

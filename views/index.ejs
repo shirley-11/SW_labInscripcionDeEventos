@@ -1,0 +1,25 @@
+<%- include('partials/head', { pageTitle: 'Próximos eventos' }) %>
+
+<h1>Próximos eventos</h1>
+
+<%# TODO 2.1
+    - Si events está vacío, muestra «No hay eventos próximos.» con class="empty".
+    - Si hay eventos, sustituye la tarjeta de ejemplo por un bucle sobre events.
+      En cada tarjeta, enlaza el título a /events/ID y muestra la fecha
+      con fmtDate(e.date) y el lugar.
+    - Si e.free es mayor que 0, muestra las plazas libres.
+      En caso contrario, muestra «Completo» con class="places full".
+%>
+
+<ul class="cards">
+  <%# EJEMPLO (estático): bórralo y sustitúyelo por un bucle %>
+  <li class="card">
+    <span class="tag">taller</span>
+    <h2><a href="#">Evento de ejemplo</a></h2>
+    <p>viernes, 20 de noviembre · 16:00</p>
+    <p>Facultad de Informática, laboratorio 2.1 (San Sebastián)</p>
+    <p class="places"><strong>8</strong> plazas libres (de 20)</p>
+  </li>
+</ul>
+
+<%- include('partials/foot') %>
